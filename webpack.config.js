@@ -7,15 +7,14 @@ const isDevelopment = argv.mode === 'development';
 const isProduction = !isDevelopment;
 
 module.exports = {
-  entry: './src/index.js',
-  mode: 'development',
+  entry: './src/index.tsx',
+  mode: argv.mode,
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        options: { presets: ['@babel/env'] },
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.s[ac]ss$/i,
@@ -52,7 +51,7 @@ module.exports = {
       },
     ],
   },
-  resolve: { extensions: ['*', '.js', '.jsx'] },
+  resolve: { extensions: ['*', '.ts', '.tsx', '.js'] },
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/dist/',
