@@ -1,13 +1,12 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
+import Main from '../main';
 import './style.scss';
 
 const App = function createApp() {
   return (
     <div>
-      <h1>
-        Привет
-      </h1>
+      <Main />
     </div>
   );
 };

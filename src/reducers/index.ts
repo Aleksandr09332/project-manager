@@ -1,3 +1,6 @@
-// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
+import langReducer from '../store/language/reducer';
 
-export default (state = [123]) => state; // combineReducers({});
+export default combineReducers({
+  langReducer,
+});

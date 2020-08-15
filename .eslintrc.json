@@ -22,7 +22,9 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "no-unused-vars": "off",
         "import/extensions": 0,
+        "@typescript-eslint/no-unused-vars": ["error"],
         "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }]
     },
     "settings": {
