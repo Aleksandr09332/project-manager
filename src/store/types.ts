@@ -1,7 +1,7 @@
-import { LangState } from './language/types';
+import { SystemState } from './system/types';
 
 interface IState {
-  lang: LangState;
+  system: SystemState;
 }
 
 export type stateType = IState;

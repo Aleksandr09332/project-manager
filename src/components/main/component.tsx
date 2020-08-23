@@ -1,13 +1,22 @@
 import React from 'react';
-import { LangEnums, LangActionTypes } from '../../store/language/types';
+import { LangEnums, LangActionTypes, StepEnums } from '../../store/system/types';
 
 export interface propsType {
   langCode: LangEnums;
+  day: number;
+  step: StepEnums;
   onToggleLang: (lang: LangEnums) => LangActionTypes;
+  onToggleStep: () => LangActionTypes;
 }
 
 export function CMain(props: propsType) {
-  const { langCode, onToggleLang } = props;
+  const {
+    day,
+    step,
+    langCode,
+    onToggleLang,
+    onToggleStep,
+  } = props;
 
   return (
     <div>
@@ -15,9 +24,16 @@ export function CMain(props: propsType) {
         Привет
       </h1>
       <div>
-        {langCode === 'ru'
-          ? <button type="button" onClick={() => onToggleLang(LangEnums.En)}>EN</button>
-          : <button type="button" onClick={() => onToggleLang(LangEnums.Ru)}>RU</button> }
+        <div>
+          {langCode === 'ru'
+            ? <button type="button" onClick={() => onToggleLang(LangEnums.En)}>EN</button>
+            : <button type="button" onClick={() => onToggleLang(LangEnums.Ru)}>RU</button> }
+        </div>
+        <div>
+          <button type="button" onClick={() => onToggleStep()}>Далее</button>
+          <p>{step}</p>
+          <strong>{day}</strong>
+        </div>
       </div>
     </div>
   );
