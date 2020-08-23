@@ -1,8 +1,13 @@
-export const TOGGLE_LANG:string = 'TOGGLE_LANG';
+export const TOGGLE_LANG = 'TOGGLE_LANG';
 
 interface IToggleLangAction {
   type: typeof TOGGLE_LANG;
-  lang: string;
+  lang: LangEnums;
+}
+
+export interface LangState {
+  code: LangEnums;
+  test: number;
 }
 
 export enum LangEnums {

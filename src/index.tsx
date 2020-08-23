@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './containers/app/index';
+import App from './components/app/index';
 
-import reducer from './reducers/index';
+import reducer from './store';
 
 const win:any = window;
 const store = createStore(

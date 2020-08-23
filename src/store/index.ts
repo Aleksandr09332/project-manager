@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import langReducer from '../store/language/reducer';
+import lang from './language/reducer';
 
 export default combineReducers({
-  langReducer,
+  lang,
 });

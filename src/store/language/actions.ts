@@ -1,6 +1,6 @@
-import { TOGGLE_LANG, LangActionTypes } from './types';
+import { TOGGLE_LANG, LangActionTypes, LangEnums } from './types';
 
-export const toggleLang = (lang: string):LangActionTypes => ({
+export const toggleLang = (lang: LangEnums):LangActionTypes => ({
   type: TOGGLE_LANG,
   lang,
 });

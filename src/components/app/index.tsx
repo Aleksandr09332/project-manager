@@ -1,6 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import Main from '../main';
+import Main from '../main/container';
 import './style.scss';
 
 const App = function createApp() {

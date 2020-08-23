@@ -1,9 +1,22 @@
-import { TOGGLE_LANG, LangEnums, LangActionTypes } from './types';
+import {
+  TOGGLE_LANG,
+  LangEnums,
+  LangActionTypes,
+  LangState,
+} from './types';
 
-export default function (state = LangEnums.Ru, action: LangActionTypes):string {
+const initState = {
+  code: LangEnums.Ru,
+  test: 1,
+};
+
+export default function (state: LangState = initState, action: LangActionTypes):LangState {
   switch (action.type) {
     case TOGGLE_LANG:
-      return action.lang;
+      return {
+        ...state,
+        code: action.lang,
+      };
     default:
       return state;
   }

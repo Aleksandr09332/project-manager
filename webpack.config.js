@@ -9,6 +9,7 @@ const isProduction = !isDevelopment;
 module.exports = {
   entry: './src/index.tsx',
   mode: argv.mode,
+  devtool: isDevelopment ? 'eval-source-map' : false,
   module: {
     rules: [
       {
