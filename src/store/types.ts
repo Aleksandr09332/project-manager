@@ -1,7 +1,9 @@
-import { SystemState } from './system/types';
+import { ISystemState } from './system/types';
+import { ITasksState } from './tasks/types';
 
 interface IState {
-  system: SystemState;
+  system: ISystemState;
+  tasks: ITasksState;
 }
 
 export type stateType = IState;

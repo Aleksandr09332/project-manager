@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleLang, toggleStep } from '../../store/system/actions';
+import { addTask } from '../../store/tasks/actions';
 import { stateType } from '../../store/types';
 import { propsType, CMain } from './component';
 
@@ -9,6 +10,8 @@ const MainContainer = function createMainContainer(props: any) {
     day,
     step,
     langCode,
+    tasks,
+    onAddTask,
     onToggleLang,
     onToggleStep,
   }: propsType = props as propsType;
@@ -17,7 +20,9 @@ const MainContainer = function createMainContainer(props: any) {
     <CMain
       step={step}
       day={day}
+      tasks={tasks}
       langCode={langCode}
+      onAddTask={onAddTask}
       onToggleLang={onToggleLang}
       onToggleStep={onToggleStep}
     />
@@ -28,11 +33,13 @@ const mapStateToProps = (state: stateType) => ({
   langCode: state.system.lang,
   step: state.system.step,
   day: state.system.day,
+  tasks: state.tasks,
 });
 
 const mapDispatchToProps = {
   onToggleLang: toggleLang,
   onToggleStep: toggleStep,
+  onAddTask: addTask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

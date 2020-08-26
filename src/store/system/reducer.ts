@@ -3,7 +3,7 @@ import {
   TOGGLE_STEP,
   LangEnums,
   LangActionTypes,
-  SystemState,
+  ISystemState,
   StepEnums,
 } from './types';
 
@@ -28,7 +28,7 @@ const getStep = (current: StepEnums):StepEnums => {
   return StepEnums.Start;
 };
 
-const toggleStep = (state: SystemState):SystemState => {
+const toggleStep = (state: ISystemState):ISystemState => {
   const nextStep = getStep(state.step);
   const { day } = state;
   return {
@@ -39,7 +39,7 @@ const toggleStep = (state: SystemState):SystemState => {
   };
 };
 
-export default function (state: SystemState = initState, action: LangActionTypes):SystemState {
+export default function (state: ISystemState = initState, action: LangActionTypes):ISystemState {
   switch (action.type) {
     case TOGGLE_LANG:
       return {

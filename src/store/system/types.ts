@@ -10,7 +10,7 @@ interface IToggleStepAction {
   type: typeof TOGGLE_STEP;
 }
 
-export interface SystemState {
+export interface ISystemState {
   lang: LangEnums;
   step: StepEnums;
   day: number;
