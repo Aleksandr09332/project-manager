@@ -1,6 +1,11 @@
 import React from 'react';
 import { LangEnums, LangActionTypes, StepEnums } from '../../store/system/types';
-import { ITasksState, TaskLevelEnum, TasksActionTypes, ITask } from '../../store/tasks/types';
+import {
+  ITasksState,
+  TaskLevelEnum,
+  TasksActionTypes,
+  ITask,
+} from '../../store/tasks/types';
 
 export interface propsType {
   langCode: LangEnums;
@@ -13,16 +18,24 @@ export interface propsType {
 }
 
 function Task(props: ITask) {
+  const {
+    id,
+    dayFinish,
+    dayStart,
+    level,
+    type,
+  } = props;
+
   return (
     <li>
-      <p>id: {props.id}</p>
-      <p>dayFinish: {props.dayFinish}</p>
-      <p>dayStart: {props.dayStart}</p>
-      <p>level: {props.level}</p>
-      <p>type: {props.type}</p>
+      <p>{`id: ${id}`}</p>
+      <p>{`dayFinish: ${dayFinish}`}</p>
+      <p>{`dayStart: ${dayStart}`}</p>
+      <p>{`level: ${level}`}</p>
+      <p>{`type: ${type}`}</p>
     </li>
   );
-};
+}
 
 export function CMain(props: propsType) {
   const {
@@ -34,10 +47,6 @@ export function CMain(props: propsType) {
     onToggleLang,
     onToggleStep,
   } = props;
-
-  {Object.keys(tasks).map((value: string) => {
-    console.log(tasks[parseInt(value)])
-  })}
 
   return (
     <div>
@@ -56,11 +65,9 @@ export function CMain(props: propsType) {
           <strong>{day}</strong>
         </div>
         <div>
-          <button type="button" onClick={() => onAddTask(TaskLevelEnum.Low, 'test')}>Создать таск</button>
+          <button type="button" onClick={() => onAddTask(TaskLevelEnum.Low, 't')}>Создать таск</button>
           <ul>
-            {Object.keys(tasks).map((value: string) => {
-              return Task(tasks[parseInt(value)]);
-            })}
+            {Object.keys(tasks).map((value: string) => Task(tasks[value]))}
           </ul>
         </div>
       </div>

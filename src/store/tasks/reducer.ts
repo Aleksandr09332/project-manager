@@ -8,15 +8,13 @@ import {
 
 let index = 0;
 
-const generationTask = (id: number, level: TaskLevelEnum, type: string):ITask => {
-  return {
-    id,
-    level,
-    type,
-    dayStart: 0,
-    dayFinish: 0,
-  }
-};
+const generationTask = (id: string, level: TaskLevelEnum, type: string):ITask => ({
+  id,
+  level,
+  type,
+  dayStart: 0,
+  dayFinish: 0,
+});
 
 export default function (state: ITasksState = {}, action: TasksActionTypes):ITasksState {
   switch (action.type) {
@@ -24,7 +22,7 @@ export default function (state: ITasksState = {}, action: TasksActionTypes):ITas
       index += 1;
       return {
         ...state,
-        [index]: generationTask(index, action.level, action.typeTask),
+        [`${action.typeTask}${index}`]: generationTask(`${action.typeTask}${index}`, action.level, action.typeTask),
       };
     default:
       return state;

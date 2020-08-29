@@ -1,11 +1,11 @@
 export const ADD_TASK = 'ADD_TASK';
 
 export interface ITasksState {
-  [id: number]: ITask;
+  [id: string]: ITask;
 }
 
 export interface ITask {
-  id: number;
+  id: string;
   type: string;
   dayStart: number;
   dayFinish: number;
