@@ -1,9 +1,21 @@
-* {
-  padding: 0;
-  margin: 0;
+.full-height {
+  height: 100vh;
 }
 
-h1 {
-  color: #00f;
-  text-align: center;
+.nav-top-name {
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.footer-text {
+  padding: 10px 20px;
+  text-align: right;
+}
+
+.nav-top-menu {
+  width: 150px;
+}
+
+.nav-top-menu-item {
+  width: 150px;
 }

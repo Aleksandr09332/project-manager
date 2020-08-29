@@ -9,10 +9,8 @@ const MainContainer = function createMainContainer(props: any) {
   const {
     day,
     step,
-    langCode,
     tasks,
     onAddTask,
-    onToggleLang,
     onToggleStep,
   }: propsType = props as propsType;
 
@@ -21,9 +19,7 @@ const MainContainer = function createMainContainer(props: any) {
       step={step}
       day={day}
       tasks={tasks}
-      langCode={langCode}
       onAddTask={onAddTask}
-      onToggleLang={onToggleLang}
       onToggleStep={onToggleStep}
     />
   );
