@@ -4,8 +4,8 @@ import {
   ITasksState,
   TaskLevelEnum,
   TasksActionTypes,
-  ITask,
 } from '../../store/tasks/types';
+import Task from '../task';
 
 export interface propsType {
   langCode: LangEnums;
@@ -15,26 +15,6 @@ export interface propsType {
   onAddTask: (level: TaskLevelEnum, typeTask: string) => TasksActionTypes;
   onToggleLang: (lang: LangEnums) => LangActionTypes;
   onToggleStep: () => LangActionTypes;
-}
-
-function Task(props: ITask) {
-  const {
-    id,
-    dayFinish,
-    dayStart,
-    level,
-    type,
-  } = props;
-
-  return (
-    <li>
-      <p>{`id: ${id}`}</p>
-      <p>{`dayFinish: ${dayFinish}`}</p>
-      <p>{`dayStart: ${dayStart}`}</p>
-      <p>{`level: ${level}`}</p>
-      <p>{`type: ${type}`}</p>
-    </li>
-  );
 }
 
 export function CMain(props: propsType) {
@@ -67,7 +47,25 @@ export function CMain(props: propsType) {
         <div>
           <button type="button" onClick={() => onAddTask(TaskLevelEnum.Low, 't')}>Создать таск</button>
           <ul>
-            {Object.keys(tasks).map((value: string) => Task(tasks[value]))}
+            {Object.keys(tasks).map((value: string) => {
+              const {
+                id,
+                dayFinish,
+                dayStart,
+                level,
+                type,
+              } = tasks[value];
+              return (
+                <Task
+                  key={id}
+                  id={id}
+                  dayFinish={dayFinish}
+                  dayStart={dayStart}
+                  level={level}
+                  type={type}
+                />
+              );
+            })}
           </ul>
         </div>
       </div>
