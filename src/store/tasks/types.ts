@@ -1,11 +1,10 @@
 export const ADD_TASK = 'ADD_TASK';
 
-export interface ITasksState {
-  [id: string]: ITask;
-}
+export type ITasksState = Array<ITask>;
 
 export interface ITask {
-  id: string;
+  id: number;
+  name: string;
   type: string;
   dayStart: number;
   dayFinish: number;

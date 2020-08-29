@@ -1,6 +1,7 @@
 import React from 'react';
 import { LangEnums, LangActionTypes, StepEnums } from '../../store/system/types';
 import {
+  ITask,
   ITasksState,
   TaskLevelEnum,
   TasksActionTypes,
@@ -47,18 +48,21 @@ export function CMain(props: propsType) {
         <div>
           <button type="button" onClick={() => onAddTask(TaskLevelEnum.Low, 't')}>Создать таск</button>
           <ul>
-            {Object.keys(tasks).map((value: string) => {
+            {tasks.map((value: ITask) => {
               const {
                 id,
                 dayFinish,
                 dayStart,
                 level,
                 type,
-              } = tasks[value];
+                name,
+              } = value;
+
               return (
                 <Task
-                  key={id}
+                  key={name}
                   id={id}
+                  name={name}
                   dayFinish={dayFinish}
                   dayStart={dayStart}
                   level={level}

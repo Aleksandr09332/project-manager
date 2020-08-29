@@ -12,7 +12,7 @@ const persistedState = loadState();
 const store = createStore(
   reducer,
   persistedState,
-  // win.__REDUX_DEVTOOLS_EXTENSION__ && win.__REDUX_DEVTOOLS_EXTENSION__(),
+  win.__REDUX_DEVTOOLS_EXTENSION__ && win.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 store.subscribe(() => {
