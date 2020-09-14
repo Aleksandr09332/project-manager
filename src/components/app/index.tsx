@@ -1,12 +1,12 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import Main from '../main/container';
+import Router from '../router/component';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './style.scss';
 
 const App = function createApp() {
-  return <Main />;
+  return <Router />;
 };
 
 export default hot(module)(App);
