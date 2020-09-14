@@ -1,3 +1,5 @@
+import { ICreateNewGame } from '../global/types';
+
 export const TOGGLE_LANG = 'TOGGLE_LANG';
 export const TOGGLE_STEP = 'TOGGLE_STEP';
 
@@ -27,4 +29,4 @@ export enum StepEnums {
   Finish = 'finish',
 }
 
-export type LangActionTypes = IToggleLangAction | IToggleStepAction;
+export type LangActionTypes = IToggleLangAction|IToggleStepAction|ICreateNewGame;

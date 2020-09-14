@@ -1,3 +1,5 @@
+import { ICreateNewGame } from '../global/types';
+
 export const ADD_TASK = 'ADD_TASK';
 
 export type ITasksState = Array<ITask>;
@@ -23,4 +25,4 @@ interface IAddTask {
   typeTask: string;
 }
 
-export type TasksActionTypes = IAddTask;
+export type TasksActionTypes = IAddTask|ICreateNewGame;

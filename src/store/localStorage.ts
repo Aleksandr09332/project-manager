@@ -1,4 +1,4 @@
-import { stateType } from './types';
+import { stateType, initState } from './types';
 
 const key = 'initState';
 
@@ -8,7 +8,7 @@ export const loadState = () => {
     if (serializedState === null) {
       return {};
     }
-    return JSON.parse(serializedState);
+    return Object.assign(JSON.parse(serializedState), initState);
   } catch (err) {
     console.error(err);
     return {};

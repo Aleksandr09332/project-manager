@@ -5,7 +5,7 @@ import {
   Footer,
   Header,
 } from 'rsuite';
-import { LangEnums, LangActionTypes, StepEnums } from '../../store/system/types';
+import { LangActionTypes, StepEnums } from '../../store/system/types';
 import {
   ITask,
   ITasksState,
@@ -14,6 +14,7 @@ import {
 } from '../../store/tasks/types';
 import Task from '../task';
 import NavTop from '../navtop/container';
+import Modal from '../modal/container';
 
 export interface propsType {
   day: number;
@@ -78,6 +79,7 @@ export function CMain(props: propsType) {
           Проект сделан в учебных целях
         </small>
       </Footer>
+      <Modal />
     </Container>
   );
 }

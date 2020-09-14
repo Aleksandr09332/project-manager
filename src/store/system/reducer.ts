@@ -6,6 +6,7 @@ import {
   ISystemState,
   StepEnums,
 } from './types';
+import { CREATE_NEW_GAME } from '../global/types';
 
 const initState = {
   lang: LangEnums.Ru,
@@ -46,6 +47,8 @@ export default function (state: ISystemState = initState, action: LangActionType
         ...state,
         lang: action.lang,
       };
+    case CREATE_NEW_GAME:
+      return initState;
     case TOGGLE_STEP:
       return toggleStep(state);
     default:
