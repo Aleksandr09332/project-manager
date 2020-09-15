@@ -4,10 +4,10 @@ import {
   Nav,
   Navbar,
 } from 'rsuite';
-import { ModalActionTypes, NameModal } from '../../store/modal/types';
+import { NavActionTypes, NameModal } from '../../store/navigation/types';
 
 export interface propsNavTopType {
-  onShowModal: (name: NameModal) => ModalActionTypes;
+  onShowModal: (name: NameModal) => NavActionTypes;
 }
 
 export function CNavTop(props: propsNavTopType) {

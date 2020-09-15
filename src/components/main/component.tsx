@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { LangActionTypes, StepEnums } from '../../store/system/types';
 import {
   ITask,
@@ -34,7 +33,6 @@ export function CMain(props: propsType) {
         <strong>{day}</strong>
       </div>
       <div>
-        <Link to="/settings">Настройки</Link>
         <button type="button" onClick={() => onAddTask(TaskLevelEnum.Low, 't')}>Создать таск</button>
         <ul>
           {tasks.map((value: ITask) => {

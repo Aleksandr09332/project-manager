@@ -1,22 +1,28 @@
 import React from 'react';
 import { Modal, Nav } from 'rsuite';
-import { ModalActionTypes, NameModal } from '../../store/modal/types';
+import { NavActionTypes, NameModal, NameScreen } from '../../store/navigation/types';
 import { ICreateNewGame } from '../../store/global/types';
 
 export interface propsModalType {
   nameModal: NameModal;
   onCreateNewGame: () => ICreateNewGame;
-  onHideModal: () => ModalActionTypes;
+  onSwitchScreen: (screen: NameScreen) => NavActionTypes;
+  onHideModal: () => NavActionTypes;
 }
 export function CModal(props: propsModalType) {
   const {
     nameModal,
     onHideModal,
     onCreateNewGame,
+    onSwitchScreen,
   } = props;
 
   const clickNewGame = () => {
     onCreateNewGame();
+    onHideModal();
+  };
+  const clickSetting = () => {
+    onSwitchScreen(NameScreen.Settings);
     onHideModal();
   };
   return (
@@ -26,7 +32,7 @@ export function CModal(props: propsModalType) {
         <Nav vertical className="main-menu">
           <Nav.Item onClick={() => onHideModal()}>Продолжить</Nav.Item>
           <Nav.Item onClick={clickNewGame}>Новая игра</Nav.Item>
-          <Nav.Item eventKey="products">Настройки</Nav.Item>
+          <Nav.Item onClick={clickSetting}>Настройки</Nav.Item>
         </Nav>
       </Modal.Body>
     </Modal>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { showModal } from '../../store/modal/actions';
+import { showModal } from '../../store/navigation/actions';
 import { propsNavTopType, CNavTop } from './component';
 
 const NavTopContainer = function createNavTopContainer(props: any) {
@@ -19,4 +19,4 @@ const mapDispatchToProps = {
   onShowModal: showModal,
 };
 
-export default connect(() => {}, mapDispatchToProps)(NavTopContainer);
+export default connect(() => ({}), mapDispatchToProps)(NavTopContainer);

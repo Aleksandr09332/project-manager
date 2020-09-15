@@ -1,7 +1,6 @@
 import React from 'react';
-import {
-  SelectPicker,
-} from 'rsuite';
+import { SelectPicker } from 'rsuite';
+import ButtonBack from '../back/container';
 import { LangActionTypes, LangEnums } from '../../store/system/types';
 
 export interface propsSettingsType {
@@ -23,6 +22,7 @@ export function CSettings(props: propsSettingsType) {
   ];
   return (
     <div>
+      <ButtonBack />
       <SelectPicker
         data={langs}
         onSelect={(value:LangEnums) => onToggleLang(value)}

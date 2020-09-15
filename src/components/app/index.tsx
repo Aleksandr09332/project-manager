@@ -1,6 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import Router from '../router/component';
+import Router from '../router/container';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './style.scss';
