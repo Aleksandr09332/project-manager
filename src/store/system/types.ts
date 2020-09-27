@@ -1,4 +1,5 @@
 import { ICreateNewGame } from '../global/types';
+import RU from '../../lang/ru.json';
 
 export const TOGGLE_LANG = 'TOGGLE_LANG';
 export const TOGGLE_STEP = 'TOGGLE_STEP';
@@ -6,6 +7,7 @@ export const TOGGLE_STEP = 'TOGGLE_STEP';
 interface IToggleLangAction {
   type: typeof TOGGLE_LANG;
   lang: LangEnums;
+  messages?: any;
 }
 
 interface IToggleStepAction {
@@ -16,6 +18,7 @@ export interface ISystemState {
   lang: LangEnums;
   step: StepEnums;
   day: number;
+  dataLang: typeof RU;
 }
 
 export enum LangEnums {

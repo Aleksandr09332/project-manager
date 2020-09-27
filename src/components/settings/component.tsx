@@ -1,15 +1,17 @@
 import React from 'react';
 import { SelectPicker } from 'rsuite';
+import { FormattedMessage, IntlProvider } from 'react-intl';
 import ButtonBack from '../back/container';
 import { LangActionTypes, LangEnums } from '../../store/system/types';
 
 export interface propsSettingsType {
   langCode: LangEnums;
+  dataLang: any;
   onToggleLang: (lang: LangEnums) => LangActionTypes;
 }
 
 export function CSettings(props: propsSettingsType) {
-  const { onToggleLang, langCode } = props;
+  const { onToggleLang, langCode, dataLang } = props;
   const langs = [
     {
       value: LangEnums.Ru,
@@ -21,13 +23,17 @@ export function CSettings(props: propsSettingsType) {
     },
   ];
   return (
-    <div>
-      <ButtonBack />
-      <SelectPicker
-        data={langs}
-        onSelect={(value:LangEnums) => onToggleLang(value)}
-        value={langCode}
-      />
-    </div>
+    <IntlProvider messages={dataLang} locale={langCode}>
+      <div>
+        <p><FormattedMessage id="hello" values={{ name: 'Вася' }} /></p>
+        <p><FormattedMessage id="bay" /></p>
+        <ButtonBack />
+        <SelectPicker
+          data={langs}
+          onSelect={(value:LangEnums) => onToggleLang(value)}
+          value={langCode}
+        />
+      </div>
+    </IntlProvider>
   );
 }

@@ -1,6 +1,7 @@
 const path = require('path');
 const { argv } = require('yargs');
 const webpack = require('webpack');
+const { transform } = require('@formatjs/ts-transformer');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const isDevelopment = argv.mode === 'development';
@@ -14,7 +15,21 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              getCustomTransformers: {
+                before: [
+                  transform({
+                    overrideIdFn: '[sha512:contenthash:base64:6]',
+                    ast: true,
+                  }),
+                ],
+              },
+            },
+          },
+        ],
         exclude: /node_modules/,
       },
       {

@@ -6,12 +6,14 @@ import {
   ISystemState,
   StepEnums,
 } from './types';
+import RU from '../../lang/ru.json';
 import { CREATE_NEW_GAME } from '../global/types';
 
 const initState = {
   lang: LangEnums.Ru,
   step: StepEnums.Start,
   day: 1,
+  dataLang: RU,
 };
 
 const steps: Array<StepEnums> = [
@@ -46,6 +48,7 @@ export default function (state: ISystemState = initState, action: LangActionType
       return {
         ...state,
         lang: action.lang,
+        dataLang: action.messages,
       };
     case CREATE_NEW_GAME:
       return initState;

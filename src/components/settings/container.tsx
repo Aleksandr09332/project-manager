@@ -8,11 +8,13 @@ const SettingContainer = function createSettingContainer(props: any) {
   const {
     langCode,
     onToggleLang,
+    dataLang,
   }: propsSettingsType = props as propsSettingsType;
 
   return (
     <CSettings
       langCode={langCode}
+      dataLang={dataLang}
       onToggleLang={onToggleLang}
     />
   );
@@ -20,6 +22,7 @@ const SettingContainer = function createSettingContainer(props: any) {
 
 const mapStateToProps = (state: stateType) => ({
   langCode: state.system.lang,
+  dataLang: state.system.dataLang,
 });
 
 const mapDispatchToProps = {
