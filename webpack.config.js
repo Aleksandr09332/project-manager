@@ -3,6 +3,7 @@ const { argv } = require('yargs');
 const webpack = require('webpack');
 const { transform } = require('@formatjs/ts-transformer');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDevelopment = argv.mode === 'development';
 const isProduction = !isDevelopment;
@@ -35,8 +36,13 @@ module.exports = {
       {
         test: /\.(sass|scss|css)$/i,
         use: [
-          'style-loader',
-          'css-loader',
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: isProduction,
+            },
+          },
           'sass-loader',
         ],
       },
@@ -74,6 +80,10 @@ module.exports = {
     filename: 'index.js',
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+      chunkFilename: '[id].css',
+    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   optimization: isProduction ? {

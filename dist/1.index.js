@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{371:function(o){o.exports=JSON.parse('{"hello":"Hello {name}","bay":"Bay"}')}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{379:function(o){o.exports=JSON.parse('{"hello":"Hello {name}","bay":"Bay"}')}}]);
