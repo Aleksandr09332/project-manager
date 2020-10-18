@@ -1,4 +1,4 @@
-import { ICreateNewGame } from '../global/types';
+import { ICreateNewGame, BoardNameTypes } from '../global/types';
 
 export const ADD_TASK = 'ADD_TASK';
 
@@ -7,7 +7,7 @@ export type ITasksState = Array<ITask>;
 export interface ITask {
   id: number;
   name: string;
-  type: string;
+  column: BoardNameTypes|null;
   dayStart: number;
   dayFinish: number;
   level: TaskLevelEnum;
@@ -22,7 +22,6 @@ export enum TaskLevelEnum {
 interface IAddTask {
   type: typeof ADD_TASK;
   level: TaskLevelEnum;
-  typeTask: string;
 }
 
 export type TasksActionTypes = IAddTask|ICreateNewGame;

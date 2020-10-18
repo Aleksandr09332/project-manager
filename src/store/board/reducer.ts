@@ -16,7 +16,7 @@ const configBoard = {
       id: 0,
       name: BoardColumnsSystem.Ready,
       maxCountTask: 2,
-      colspan: 4,
+      colspan: 3,
     },
     {
       id: 1,
@@ -34,19 +34,19 @@ const configBoard = {
       id: 3,
       name: BoardColumnsDepartment.Testing,
       maxCountTask: 2,
-      colspan: 4,
+      colspan: 6,
     },
     {
       id: 4,
       name: BoardColumnsSystem.Deployed,
       maxCountTask: 0,
-      colspan: 4,
+      colspan: 3,
     },
     {
       id: 5,
       name: BoardColumnsSystem.Closed,
       maxCountTask: 0,
-      colspan: 4,
+      colspan: 0,
     },
   ],
   // Тут можно будет добавить новые режимы игр

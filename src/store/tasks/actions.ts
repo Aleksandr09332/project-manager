@@ -4,8 +4,7 @@ import {
   TasksActionTypes,
 } from './types';
 
-export const addTask = (level: TaskLevelEnum, typeTask: string):TasksActionTypes => ({
+export const addTask = (level: TaskLevelEnum):TasksActionTypes => ({
   type: ADD_TASK,
   level,
-  typeTask,
 });

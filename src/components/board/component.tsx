@@ -5,11 +5,10 @@ import {
   BoardActionTypes,
   IBoardState,
   IColumn,
-  BoardNameTypes,
 } from '../../store/board/types';
 import { ITask, ITasksState } from '../../store/tasks/types';
 import { StepEnums } from '../../store/system/types';
-import { BoardColumnsSystem } from '../../store/global/types';
+import { BoardColumnsSystem, BoardNameTypes } from '../../store/global/types';
 import Task from '../task';
 
 export interface BoardPropsType {
@@ -17,6 +16,16 @@ export interface BoardPropsType {
   tasks: ITasksState;
   columns: IBoardState;
   onUpdateMaxCountTasks: (name: BoardNameTypes, count: number) => BoardActionTypes;
+}
+
+function drawTask(task: ITask, boardColumn: BoardNameTypes) {
+  const { column } = task;
+
+  if (boardColumn === column) {
+    return Task(task);
+  }
+
+  return null;
 }
 
 export function CBoard(props: BoardPropsType) {
@@ -54,29 +63,41 @@ export function CBoard(props: BoardPropsType) {
               <div className="board-column">
                 <h4>{name}</h4>
                 <table>
-                  <tr>
-                    <td className="board-table-title">
-                      Лимит
-                    </td>
-                    <td>
-                      <InputGroup>
-                        <InputGroup.Button onClick={minusHandler} disabled={isDisabled}>-</InputGroup.Button>
-                        <InputNumber
-                          className="custom-input-number"
-                          value={maxCountTask}
-                        />
-                        <InputGroup.Button onClick={plusHandler} disabled={isDisabled}>+</InputGroup.Button>
-                      </InputGroup>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="board-table-title">Рабочий</td>
-                    <td> </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td className="board-table-title">
+                        Лимит
+                      </td>
+                      <td>
+                        <InputGroup>
+                          <InputGroup.Button
+                            onClick={minusHandler}
+                            disabled={isDisabled}
+                          >
+                            -
+                          </InputGroup.Button>
+                          <InputNumber
+                            className="custom-input-number"
+                            value={maxCountTask}
+                          />
+                          <InputGroup.Button
+                            onClick={plusHandler}
+                            disabled={isDisabled}
+                          >
+                            +
+                          </InputGroup.Button>
+                        </InputGroup>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="board-table-title">Рабочий</td>
+                      <td> </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
               <div className="board-column">
-                <br/>
+                {tasks.map((task: ITask) => drawTask(task, name))}
               </div>
             </FlexboxGrid.Item>
           );

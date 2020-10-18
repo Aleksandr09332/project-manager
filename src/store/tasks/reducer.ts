@@ -5,13 +5,13 @@ import {
   TaskLevelEnum,
   TasksActionTypes,
 } from './types';
-import { CREATE_NEW_GAME } from '../global/types';
+import { CREATE_NEW_GAME, BoardColumnsSystem } from '../global/types';
 
-const generationTask = (id: number, level: TaskLevelEnum, type: string):ITask => ({
+const generationTask = (id: number, level: TaskLevelEnum):ITask => ({
   id,
   level,
-  type,
-  name: `#${type}${id + 1}`,
+  column: BoardColumnsSystem.Ready,
+  name: `#${level}${id + 1}`,
   dayStart: 0,
   dayFinish: 0,
 });
@@ -23,7 +23,7 @@ export default function (state: ITasksState = initState, action: TasksActionType
     case ADD_TASK:
       return [
         ...state,
-        generationTask(state.length, action.level, action.typeTask),
+        generationTask(state.length, action.level),
       ];
     case CREATE_NEW_GAME:
       return initState;

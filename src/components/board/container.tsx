@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { updateMaxCountTasks } from '../../store/board/actions';
 import { stateType } from '../../store/types';
 import { BoardPropsType, CBoard } from './component';
-import {CMain} from "../main/component";
 
 const BoardContainer = function createMainContainer(props: any) {
   const {

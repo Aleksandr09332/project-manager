@@ -21,3 +21,5 @@ export enum BoardColumnsDepartment {
   Development = 'Development',
   Testing = 'Testing',
 }
+
+export type BoardNameTypes = BoardColumnsDepartment|BoardColumnsSystem;
