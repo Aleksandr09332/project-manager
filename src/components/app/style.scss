@@ -1,3 +1,7 @@
+body {
+  background: #f7f7fa;
+}
+
 .full-height {
   height: 100vh;
 }
@@ -31,4 +35,43 @@
 .main-menu {
   margin: 0 auto;
   width: 200px;
+}
+
+.custom-input-number {
+  input {
+    text-align: center;
+    width: 40px;
+  }
+
+  .rs-input-number-btn-group-vertical {
+    display: none;
+  }
+}
+
+.board-wrapper {
+  background: #fff;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: 1px solid #000;
+
+  .rs-flex-box-grid-item {
+    border-left: 1px solid #000;
+  }
+  .rs-flex-box-grid-item:first-child {
+    border: none;
+  }
+}
+
+.board-column {
+  padding: 10px;
+  border-bottom: 1px solid #000;
+}
+
+.board-column:last-child {
+  border: none;
+}
+
+.board-table-title {
+  padding-right: 10px;
 }

@@ -7,6 +7,7 @@ import {
   TasksActionTypes,
 } from '../../store/tasks/types';
 import Task from '../task';
+import Board from '../board/container';
 
 export interface propsType {
   day: number;
@@ -31,6 +32,9 @@ export function CMain(props: propsType) {
         <button type="button" onClick={() => onToggleStep()}>Далее</button>
         <p>{step}</p>
         <strong>{day}</strong>
+      </div>
+      <div>
+        <Board />
       </div>
       <div>
         <button type="button" onClick={() => onAddTask(TaskLevelEnum.Low, 't')}>Создать таск</button>
