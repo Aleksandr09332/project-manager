@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { InputNumber, InputGroup } from 'rsuite';
-import {useSize} from '@umijs/hooks';
+import { useSize } from '@umijs/hooks';
 import './style.scss';
 
 import {
