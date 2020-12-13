@@ -1,0 +1,88 @@
+//.board-wrapper {
+//  background: #fff;
+//  height: 100%;
+//
+//  .rs-flex-box-grid {
+//    height: 100%;
+//  }
+//
+//  .rs-flex-box-grid-item:nth-child(2n) {
+//    background: #3498ff26;
+//  }
+//
+//  .rs-flex-box-grid-top {
+//    -webkit-box-align: stretch;
+//    align-items: stretch;
+//  }
+//}
+
+.board {
+  background: #fff;
+  flex: 1 1 auto;
+  display: flex;
+}
+
+.board-column {
+  min-width: 300px;
+
+  &:nth-child(2n) {
+    background: #3498ff26;
+  }
+
+  &--2subcolumn {
+    min-width: 600px;
+  }
+}
+
+.board-row {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+
+  &--padding {
+    padding: 10px;
+  }
+}
+
+.board-row:last-child {
+  border: none;
+}
+
+.board-name {
+  padding: 10px;
+}
+
+.board-table {
+  width: 100%;
+
+  td {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &__title {
+    padding-right: 10px;
+  }
+}
+
+.board-status {
+  width: 100%;
+  display: flex;
+
+  &--border {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &__item {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px;
+
+    &:last-child {
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      background: rgba(255,255,255,0.3);
+    }
+  }
+}
+
+.board-status-null {
+  height: 41px;
+}

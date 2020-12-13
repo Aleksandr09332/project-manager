@@ -1,5 +1,6 @@
 import React from 'react';
-import { FlexboxGrid, InputNumber, InputGroup } from 'rsuite';
+import { InputNumber, InputGroup } from 'rsuite';
+import './style.scss';
 
 import {
   BoardActionTypes,
@@ -11,21 +12,56 @@ import { StepEnums } from '../../store/system/types';
 import { BoardColumnsSystem, BoardNameTypes } from '../../store/global/types';
 import Task from '../task';
 
-export interface BoardPropsType {
+type TUpdateMaxCountTasks = (name: BoardNameTypes, count: number) => BoardActionTypes;
+
+type TUpdateLimit = {
+  maxCountTask: number;
+  isDisabled:boolean;
+  onUpdateMaxCountTasks: TUpdateMaxCountTasks;
+  name: BoardNameTypes;
+}
+
+export type BoardPropsType = {
   step: StepEnums;
   tasks: ITasksState;
   columns: IBoardState;
-  onUpdateMaxCountTasks: (name: BoardNameTypes, count: number) => BoardActionTypes;
+  onUpdateMaxCountTasks: TUpdateMaxCountTasks;
 }
 
-function drawTask(task: ITask, boardColumn: BoardNameTypes) {
-  const { column } = task;
+function getTasks(tasks: Array<ITask>, boardColumn: BoardNameTypes) {
+  return tasks.map((task: ITask) => {
+    const { column } = task;
 
-  if (boardColumn === column) {
-    return Task(task);
+    if (boardColumn === column) {
+      return Task(task);
+    }
+
+    return null;
+  });
+}
+
+function minusHandler({
+  maxCountTask,
+  isDisabled,
+  onUpdateMaxCountTasks,
+  name,
+} :TUpdateLimit): void {
+  if (maxCountTask <= 1 || isDisabled) {
+    return;
   }
+  onUpdateMaxCountTasks(name, maxCountTask - 1);
+}
 
-  return null;
+function plusHandler({
+  maxCountTask,
+  isDisabled,
+  onUpdateMaxCountTasks,
+  name,
+} :TUpdateLimit): void {
+  if (maxCountTask >= 99 || isDisabled) {
+    return;
+  }
+  onUpdateMaxCountTasks(name, maxCountTask + 1);
 }
 
 export function CBoard(props: BoardPropsType) {
@@ -38,71 +74,80 @@ export function CBoard(props: BoardPropsType) {
   const isDisabled = step !== StepEnums.Start;
 
   return (
-    <div className="board-wrapper">
-      <FlexboxGrid>
-        {columns.map((column: IColumn) => {
-          const { name, maxCountTask, colspan } = column;
-          if (name === BoardColumnsSystem.Closed) {
-            return null;
-          }
-          const minusHandler = () => {
-            if (maxCountTask <= 1 || isDisabled) {
-              return;
-            }
-            onUpdateMaxCountTasks(name, maxCountTask - 1);
-          };
-          const plusHandler = () => {
-            if (maxCountTask >= 99 || isDisabled) {
-              return;
-            }
-            onUpdateMaxCountTasks(name, maxCountTask + 1);
-          };
+    <div className="board">
+      {columns.map(({ name, maxCountTask, colspan }: IColumn) => {
+        if (name === BoardColumnsSystem.Closed) {
+          return null;
+        }
 
-          return (
-            <FlexboxGrid.Item colspan={colspan} key={name}>
-              <div className="board-column">
-                <h4>{name}</h4>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td className="board-table-title">
-                        Лимит
-                      </td>
-                      <td>
-                        <InputGroup>
-                          <InputGroup.Button
-                            onClick={minusHandler}
-                            disabled={isDisabled}
-                          >
-                            -
-                          </InputGroup.Button>
-                          <InputNumber
-                            className="custom-input-number"
-                            value={maxCountTask}
-                          />
-                          <InputGroup.Button
-                            onClick={plusHandler}
-                            disabled={isDisabled}
-                          >
-                            +
-                          </InputGroup.Button>
-                        </InputGroup>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="board-table-title">Рабочий</td>
-                      <td> </td>
-                    </tr>
-                  </tbody>
-                </table>
+        const isSubColumn = colspan === 6;
+
+        return (
+          <div className={['board-column', isSubColumn ? 'board-column--2subcolumn' : ''].join(' ')} key={name}>
+            <div className="board-row">
+              <h4 className="board-name">{name}</h4>
+              <table className="board-table">
+                <tbody>
+                  <tr>
+                    <td className="board-table__title">
+                      Лимит
+                    </td>
+                    <td>
+                      <InputGroup>
+                        <InputGroup.Button
+                          size="sm"
+                          onClick={() => minusHandler({
+                            maxCountTask,
+                            isDisabled,
+                            onUpdateMaxCountTasks,
+                            name,
+                          })}
+                          disabled={isDisabled}
+                        >
+                          -
+                        </InputGroup.Button>
+                        <InputNumber
+                          size="sm"
+                          className="custom-input-number"
+                          value={maxCountTask}
+                        />
+                        <InputGroup.Button
+                          size="sm"
+                          onClick={() => plusHandler({
+                            maxCountTask,
+                            isDisabled,
+                            onUpdateMaxCountTasks,
+                            name,
+                          })}
+                          disabled={isDisabled}
+                        >
+                          +
+                        </InputGroup.Button>
+                      </InputGroup>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="board-table__title">Рабочий</td>
+                    <td> </td>
+                  </tr>
+                </tbody>
+              </table>
+              {colspan === 6 ? (
+                <div className="board-status board-status--border">
+                  <div className="board-status__item">В работе</div>
+                  <div className="board-status__item">Готово</div>
+                </div>
+              ) : <div className="board-status-null" />}
+            </div>
+            {colspan === 6 ? (
+              <div className="board-status">
+                <div className="board-status__item">{getTasks(tasks, name)}</div>
+                <div className="board-status__item">Готово</div>
               </div>
-              <div className="board-column">
-                {tasks.map((task: ITask) => drawTask(task, name))}
-              </div>
-            </FlexboxGrid.Item>
-          );
-        })}
-      </FlexboxGrid>
+            ) : <div className="board-row board-row--padding">{getTasks(tasks, name)}</div>}
+          </div>
+        );
+      })}
     </div>
   );
 }
