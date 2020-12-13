@@ -24,12 +24,16 @@
 
 .board-column {
   min-width: 300px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
 
   &:nth-child(2n) {
     background: #3498ff26;
   }
 
   &--2subcolumn {
+    flex: 1 2 600px;
     min-width: 600px;
   }
 }
@@ -66,6 +70,7 @@
 .board-status {
   width: 100%;
   display: flex;
+  flex: 1 1 auto;
 
   &--border {
     border-top: 1px solid rgba(0, 0, 0, 0.1);

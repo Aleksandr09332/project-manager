@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InputNumber, InputGroup } from 'rsuite';
+import {useSize} from '@umijs/hooks';
 import './style.scss';
 
 import {
@@ -64,19 +65,41 @@ function plusHandler({
   onUpdateMaxCountTasks(name, maxCountTask + 1);
 }
 
-export function CBoard(props: BoardPropsType) {
-  const {
-    step,
-    tasks,
-    columns,
-    onUpdateMaxCountTasks,
-  } = props;
+export function CBoard({
+  step,
+  tasks,
+  columns,
+  onUpdateMaxCountTasks,
+}: BoardPropsType) {
+  const widthColumn = 300;
+  const [box, ref] = useSize<HTMLDivElement>();
+  const [position, setPosition] = useState(0);
   const isDisabled = step !== StepEnums.Start;
+  const maxPosition = columns.length - 1;
+  const widthBoard = box.width || 0;
+  let sumWidth = 0;
+  let lastPosition = position;
+
+  for (let i = position; i < maxPosition; i += 1) {
+    const { colspan } = columns[i];
+    const k = colspan === 6 ? 2 : 1;
+
+    sumWidth += k * widthColumn;
+
+    if (sumWidth > widthBoard) {
+      lastPosition = i - 1;
+      break;
+    }
+  }
 
   return (
-    <div className="board">
-      {columns.map(({ name, maxCountTask, colspan }: IColumn) => {
+    <div className="board" ref={ref}>
+      {columns.map(({ name, maxCountTask, colspan }: IColumn, index: number) => {
         if (name === BoardColumnsSystem.Closed) {
+          return null;
+        }
+
+        if (index < position || index > lastPosition) {
           return null;
         }
 
@@ -132,17 +155,17 @@ export function CBoard(props: BoardPropsType) {
                   </tr>
                 </tbody>
               </table>
-              {colspan === 6 ? (
+              {isSubColumn ? (
                 <div className="board-status board-status--border">
                   <div className="board-status__item">В работе</div>
                   <div className="board-status__item">Готово</div>
                 </div>
               ) : <div className="board-status-null" />}
             </div>
-            {colspan === 6 ? (
+            {isSubColumn ? (
               <div className="board-status">
                 <div className="board-status__item">{getTasks(tasks, name)}</div>
-                <div className="board-status__item">Готово</div>
+                <div className="board-status__item">test</div>
               </div>
             ) : <div className="board-row board-row--padding">{getTasks(tasks, name)}</div>}
           </div>
