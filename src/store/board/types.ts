@@ -5,7 +5,7 @@ export const UPDATE_MAX_COUNT_TASKS_IN_COLUMN = 'UPDATE_MAX_COUNT_TASKS_IN_COLUM
 export interface IColumn {
   name: BoardNameTypes;
   maxCountTask: number;
-  colspan: number;
+  isDone: boolean;
 }
 
 export type IBoardState = Array<IColumn>;
