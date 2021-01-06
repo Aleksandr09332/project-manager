@@ -61,8 +61,13 @@
     padding-right: 10px;
   }
 
-  &__title {
-    padding-right: 10px;
+  &__right {
+    text-align: right;
+  }
+
+  &__workers {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 
@@ -89,4 +94,14 @@
 
 .board-status-null {
   height: 41px;
+}
+
+.worker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  margin-left: 10px;
+  display: inline-block;
+  cursor: pointer;
 }

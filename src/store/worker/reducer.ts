@@ -8,70 +8,36 @@ import {
   TWorker,
 } from './types';
 import {
+  womanFirstName,
+  womanSecondName,
+  manFirstName,
+  manSecondName,
+} from '../../conf/workerName';
+import {
   CREATE_NEW_GAME, EDepartment, ModeGame,
 } from '../global/types';
 
-const configWorker = {
-  [ModeGame.Normal]: [
-    {
-      id: 0,
-      name: '',
-      completedWork: 0,
-      taskId: null,
-      department: EDepartment.Analysis,
-    },
-    {
-      id: 1,
-      name: '',
-      completedWork: 0,
-      taskId: null,
-      department: EDepartment.Analysis,
-    },
-    {
-      id: 2,
-      name: '',
-      completedWork: 0,
-      taskId: null,
-      department: EDepartment.Development,
-    },
-    {
-      id: 3,
-      name: '',
-      completedWork: 0,
-      taskId: null,
-      department: EDepartment.Development,
-    },
-    {
-      id: 4,
-      name: '',
-      completedWork: 0,
-      taskId: null,
-      department: EDepartment.Development,
-    },
-    {
-      id: 5,
-      name: '',
-      completedWork: 0,
-      taskId: null,
-      department: EDepartment.Testing,
-    },
-    {
-      id: 6,
-      name: '',
-      completedWork: 0,
-      taskId: null,
-      department: EDepartment.Testing,
-    },
-  ],
-  // Тут можно будет добавить новые режимы игр
-  [ModeGame.Hard]: [],
-};
-
 const initState: TWorkerState = [];
+const getRandom = (n: number) => Math.floor(Math.random() * n);
 
 const generateWorker = (id: number, department: EDepartment):TWorker => {
+  let firstName: string;
+  let secondName: string;
+
+  if (getRandom(2) === 0) {
+    const first = getRandom(womanFirstName.length);
+    const second = getRandom(womanSecondName.length);
+    firstName = womanFirstName[first];
+    secondName = womanSecondName[second];
+  } else {
+    const first = getRandom(manFirstName.length);
+    const second = getRandom(manSecondName.length);
+    firstName = manFirstName[first];
+    secondName = manSecondName[second];
+  }
+
   return {
-    name: '',
+    name: `${firstName} ${secondName}`,
     completedWork: 0,
     taskId: null,
     department,
@@ -81,18 +47,50 @@ const generateWorker = (id: number, department: EDepartment):TWorker => {
 
 export default function (state: TWorkerState = initState, action: WorkerActionTypes):TWorkerState {
   switch (action.type) {
+    case CREATE_NEW_GAME:
+      if (action.mode === ModeGame.Normal) {
+        return [
+          generateWorker(0, EDepartment.Analysis),
+          generateWorker(1, EDepartment.Analysis),
+          generateWorker(2, EDepartment.Development),
+          generateWorker(3, EDepartment.Development),
+          generateWorker(4, EDepartment.Development),
+          generateWorker(5, EDepartment.Testing),
+          generateWorker(6, EDepartment.Testing),
+        ];
+      }
+      return [];
+
     case ADD_WORKER:
+      return [
+        ...state,
+        generateWorker(state.length, action.department),
+      ];
+    case REMOVE_WORKER:
+      return [
+        ...state.slice(0, action.id),
+        ...state.slice(action.id + 1),
+      ];
+    case ASSIGN_TASK_TO_WORKER:
       return state.map((item) => {
-        if (action.name !== item.name) {
+        if (item.id !== action.workerId) {
           return item;
         }
         return {
           ...item,
-          maxCountTask: action.count,
+          taskId: action.taskId,
         };
       });
-    case CREATE_NEW_GAME:
-      return configWorker[action.mode];
+    case UPDATE_COMPLETED_WORK:
+      return state.map((item) => {
+        if (item.id !== action.workerId) {
+          return item;
+        }
+        return {
+          ...item,
+          completedWork: action.completedWork,
+        };
+      });
     default:
       return state;
   }

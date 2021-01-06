@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  InputNumber, InputGroup, ButtonGroup, IconButton, Icon,
+  InputNumber, InputGroup, ButtonGroup, IconButton, Icon, Whisper, Tooltip,
 } from 'rsuite';
 import { useSize } from '@umijs/hooks';
 import './style.scss';
@@ -11,6 +11,7 @@ import {
 import { ITask, ITasksState } from '../../store/tasks/types';
 import { StepEnums } from '../../store/system/types';
 import { EBoardColumnsSystem, BoardNameTypes } from '../../store/global/types';
+import { TWorker, TWorkerState } from '../../store/worker/types';
 import Task from '../task';
 
 type TUpdateMaxCountTasks = (name: BoardNameTypes, count: number) => BoardActionTypes;
@@ -26,6 +27,7 @@ export type BoardPropsType = {
   step: StepEnums;
   tasks: ITasksState;
   columns: IBoardState;
+  workers: TWorkerState;
   onUpdateMaxCountTasks: TUpdateMaxCountTasks;
 }
 
@@ -63,7 +65,7 @@ function plusHandler({
 }
 
 export function CBoard({
-  step, tasks, columns, onUpdateMaxCountTasks,
+  step, tasks, columns, onUpdateMaxCountTasks, workers,
 }: BoardPropsType) {
   const widthColumn = 200;
   const [box, ref] = useSize<HTMLDivElement>();
@@ -164,8 +166,27 @@ export function CBoard({
                       </td>
                     </tr>
                     <tr>
-                      <td className="board-table__title">Рабочий</td>
-                      <td> </td>
+                      <td className="board-table__workers board-table__title">Рабочий</td>
+                      <td className="board-table__workers board-table__right">
+                        {
+                          workers
+                            .filter((item: TWorker) => item.department === name)
+                            .map((item: TWorker) => (
+                              <Whisper
+                                key={item.name}
+                                trigger="hover"
+                                placement="topEnd"
+                                speaker={(
+                                  <Tooltip>
+                                    {item.name}
+                                  </Tooltip>
+                                )}
+                              >
+                                <div className="worker" />
+                              </Whisper>
+                            ))
+                        }
+                      </td>
                     </tr>
                   </tbody>
                 </table>

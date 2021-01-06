@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { showModal, hideModal, switchScreen } from '../../store/navigation/actions';
 import { createNewGame } from '../../store/global/actions';
-import { stateType } from '../../store/types';
+import { TState } from '../../store/types';
 import { propsModalType, CModal } from './component';
 
 const ModalContainer = function createModalContainer(props: any) {
@@ -23,7 +23,7 @@ const ModalContainer = function createModalContainer(props: any) {
   );
 };
 
-const mapStateToProps = (state: stateType) => ({
+const mapStateToProps = (state: TState) => ({
   nameModal: state.navigation.modal,
 });
 

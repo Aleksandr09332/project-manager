@@ -1,14 +1,8 @@
 import { ISystemState } from './system/types';
 import { ITasksState } from './tasks/types';
 import { IBoardState } from './board/types';
+import { TWorkerState } from './worker/types';
 import { INavState, NameModal } from './navigation/types';
-
-interface IState {
-  system: ISystemState;
-  tasks: ITasksState;
-  board: IBoardState;
-  navigation: INavState;
-}
 
 export const initState = {
   navigation: {
@@ -16,4 +10,10 @@ export const initState = {
   },
 };
 
-export type stateType = IState;
+export type TState = {
+  system: ISystemState;
+  tasks: ITasksState;
+  workers: TWorkerState;
+  board: IBoardState;
+  navigation: INavState;
+};

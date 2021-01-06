@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleLang } from '../../store/system/actions';
-import { stateType } from '../../store/types';
+import { TState } from '../../store/types';
 import { propsSettingsType, CSettings } from './component';
 
 const SettingContainer = function createSettingContainer(props: any) {
@@ -20,7 +20,7 @@ const SettingContainer = function createSettingContainer(props: any) {
   );
 };
 
-const mapStateToProps = (state: stateType) => ({
+const mapStateToProps = (state: TState) => ({
   langCode: state.system.lang,
   dataLang: state.system.dataLang,
 });

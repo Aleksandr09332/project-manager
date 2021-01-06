@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { stateType } from '../../store/types';
+import { TState } from '../../store/types';
 import { propsRouterType, CRouter } from './component';
 
 const ModalContainer = function createModalContainer(props: any) {
@@ -15,7 +15,7 @@ const ModalContainer = function createModalContainer(props: any) {
   );
 };
 
-const mapStateToProps = (state: stateType) => ({
+const mapStateToProps = (state: TState) => ({
   screen: state.navigation.screen,
 });
 

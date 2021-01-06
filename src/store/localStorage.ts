@@ -1,4 +1,4 @@
-import { stateType, initState } from './types';
+import { TState, initState } from './types';
 
 const key = 'initState';
 
@@ -15,7 +15,7 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state: stateType) => {
+export const saveState = (state: TState) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(key, serializedState);
