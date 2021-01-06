@@ -1,6 +1,6 @@
 export const CREATE_NEW_GAME = 'CREATE_NEW_GAME';
 
-export interface ICreateNewGame {
+export type TCreateNewGame = {
   type: typeof CREATE_NEW_GAME;
   mode: ModeGame;
 }
@@ -10,16 +10,16 @@ export enum ModeGame {
   Hard = 'Hard',
 }
 
-export enum BoardColumnsSystem {
+export enum EBoardColumnsSystem {
   Ready = 'Ready',
   Deployed = 'Deployed',
   Closed = 'Closed',
 }
 
-export enum BoardColumnsDepartment {
+export enum EDepartment {
   Analysis = 'Analysis',
   Development = 'Development',
   Testing = 'Testing',
 }
 
-export type BoardNameTypes = BoardColumnsDepartment|BoardColumnsSystem;
+export type BoardNameTypes = EBoardColumnsSystem|EDepartment;

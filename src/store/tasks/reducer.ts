@@ -5,12 +5,12 @@ import {
   TaskLevelEnum,
   TasksActionTypes,
 } from './types';
-import { CREATE_NEW_GAME, BoardColumnsSystem } from '../global/types';
+import { CREATE_NEW_GAME, EBoardColumnsSystem } from '../global/types';
 
 const generationTask = (id: number, level: TaskLevelEnum):ITask => ({
   id,
   level,
-  column: BoardColumnsSystem.Ready,
+  column: EBoardColumnsSystem.Ready,
   name: `#${level}${id + 1}`,
   dayStart: 0,
   dayFinish: 0,

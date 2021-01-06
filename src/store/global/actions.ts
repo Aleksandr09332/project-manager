@@ -1,6 +1,6 @@
-import { CREATE_NEW_GAME, ICreateNewGame, ModeGame } from './types';
+import { CREATE_NEW_GAME, TCreateNewGame, ModeGame } from './types';
 
-export const createNewGame = ():ICreateNewGame => ({
+export const createNewGame = ():TCreateNewGame => ({
   type: CREATE_NEW_GAME,
   mode: ModeGame.Normal,
 });

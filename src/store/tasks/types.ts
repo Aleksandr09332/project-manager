@@ -1,4 +1,4 @@
-import { ICreateNewGame, BoardNameTypes } from '../global/types';
+import { TCreateNewGame, BoardNameTypes } from '../global/types';
 
 export const ADD_TASK = 'ADD_TASK';
 
@@ -24,4 +24,4 @@ interface IAddTask {
   level: TaskLevelEnum;
 }
 
-export type TasksActionTypes = IAddTask|ICreateNewGame;
+export type TasksActionTypes = IAddTask|TCreateNewGame;

@@ -6,13 +6,11 @@ import { useSize } from '@umijs/hooks';
 import './style.scss';
 
 import {
-  BoardActionTypes,
-  IBoardState,
-  IColumn,
+  BoardActionTypes, IBoardState, IColumn,
 } from '../../store/board/types';
 import { ITask, ITasksState } from '../../store/tasks/types';
 import { StepEnums } from '../../store/system/types';
-import { BoardColumnsSystem, BoardNameTypes } from '../../store/global/types';
+import { EBoardColumnsSystem, BoardNameTypes } from '../../store/global/types';
 import Task from '../task';
 
 type TUpdateMaxCountTasks = (name: BoardNameTypes, count: number) => BoardActionTypes;
@@ -44,10 +42,7 @@ function getTasks(tasks: Array<ITask>, boardColumn: BoardNameTypes) {
 }
 
 function minusHandler({
-  maxCountTask,
-  isDisabled,
-  onUpdateMaxCountTasks,
-  name,
+  maxCountTask, isDisabled, onUpdateMaxCountTasks, name,
 } :TUpdateLimit): void {
   if (maxCountTask <= 1 || isDisabled) {
     return;
@@ -68,10 +63,7 @@ function plusHandler({
 }
 
 export function CBoard({
-  step,
-  tasks,
-  columns,
-  onUpdateMaxCountTasks,
+  step, tasks, columns, onUpdateMaxCountTasks,
 }: BoardPropsType) {
   const widthColumn = 200;
   const [box, ref] = useSize<HTMLDivElement>();
@@ -119,7 +111,7 @@ export function CBoard({
       )}
       <div className="board-columns">
         {columns.map(({ name, maxCountTask, isDone }: IColumn, index: number) => {
-          if (name === BoardColumnsSystem.Closed) {
+          if (name === EBoardColumnsSystem.Closed) {
             return null;
           }
 

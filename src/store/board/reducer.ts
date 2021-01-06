@@ -5,8 +5,8 @@ import {
 } from './types';
 import {
   CREATE_NEW_GAME,
-  BoardColumnsDepartment,
-  BoardColumnsSystem,
+  EDepartment,
+  EBoardColumnsSystem,
   ModeGame,
 } from '../global/types';
 
@@ -14,37 +14,37 @@ const configBoard = {
   [ModeGame.Normal]: [
     {
       id: 0,
-      name: BoardColumnsSystem.Ready,
+      name: EBoardColumnsSystem.Ready,
       maxCountTask: 2,
       isDone: false,
     },
     {
       id: 1,
-      name: BoardColumnsDepartment.Analysis,
+      name: EDepartment.Analysis,
       maxCountTask: 2,
       isDone: true,
     },
     {
       id: 2,
-      name: BoardColumnsDepartment.Development,
+      name: EDepartment.Development,
       maxCountTask: 3,
       isDone: true,
     },
     {
       id: 3,
-      name: BoardColumnsDepartment.Testing,
+      name: EDepartment.Testing,
       maxCountTask: 2,
       isDone: true,
     },
     {
       id: 4,
-      name: BoardColumnsSystem.Deployed,
+      name: EBoardColumnsSystem.Deployed,
       maxCountTask: 0,
       isDone: false,
     },
     {
       id: 5,
-      name: BoardColumnsSystem.Closed,
+      name: EBoardColumnsSystem.Closed,
       maxCountTask: 0,
       isDone: false,
     },

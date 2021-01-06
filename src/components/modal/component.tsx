@@ -1,11 +1,11 @@
 import React from 'react';
 import { Modal, Nav } from 'rsuite';
 import { NavActionTypes, NameModal, NameScreen } from '../../store/navigation/types';
-import { ICreateNewGame } from '../../store/global/types';
+import { TCreateNewGame } from '../../store/global/types';
 
 export interface propsModalType {
   nameModal: NameModal;
-  onCreateNewGame: () => ICreateNewGame;
+  onCreateNewGame: () => TCreateNewGame;
   onSwitchScreen: (screen: NameScreen) => NavActionTypes;
   onHideModal: () => NavActionTypes;
 }

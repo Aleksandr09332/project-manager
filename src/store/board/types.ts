@@ -1,4 +1,4 @@
-import { ICreateNewGame, BoardNameTypes } from '../global/types';
+import { TCreateNewGame, BoardNameTypes } from '../global/types';
 
 export const UPDATE_MAX_COUNT_TASKS_IN_COLUMN = 'UPDATE_MAX_COUNT_TASKS_IN_COLUMN';
 
@@ -16,4 +16,4 @@ interface IUpdateMaxCount {
   count: number;
 }
 
-export type BoardActionTypes = IUpdateMaxCount|ICreateNewGame;
+export type BoardActionTypes = IUpdateMaxCount|TCreateNewGame;
