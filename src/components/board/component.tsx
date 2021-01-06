@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  InputNumber, InputGroup, ButtonGroup, IconButton, Icon, Whisper, Tooltip,
+  InputNumber, InputGroup, ButtonGroup, IconButton, Icon, Whisper, Tooltip, Avatar,
 } from 'rsuite';
 import { useSize } from '@umijs/hooks';
 import './style.scss';
@@ -63,6 +63,9 @@ function plusHandler({
   }
   onUpdateMaxCountTasks(name, maxCountTask + 1);
 }
+
+const iconMan = './dist/image/man.png';
+const iconWoman = './dist/image/woman.png';
 
 export function CBoard({
   step, tasks, columns, onUpdateMaxCountTasks, workers,
@@ -182,7 +185,11 @@ export function CBoard({
                                   </Tooltip>
                                 )}
                               >
-                                <div className="worker" />
+                                <Avatar
+                                  className="worker"
+                                  circle
+                                  src={item.isWoman ? iconWoman : iconMan}
+                                />
                               </Whisper>
                             ))
                         }

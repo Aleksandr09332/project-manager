@@ -23,8 +23,9 @@ const getRandom = (n: number) => Math.floor(Math.random() * n);
 const generateWorker = (id: number, department: EDepartment):TWorker => {
   let firstName: string;
   let secondName: string;
+  const isWoman = getRandom(2) === 0;
 
-  if (getRandom(2) === 0) {
+  if (isWoman) {
     const first = getRandom(womanFirstName.length);
     const second = getRandom(womanSecondName.length);
     firstName = womanFirstName[first];
@@ -41,6 +42,7 @@ const generateWorker = (id: number, department: EDepartment):TWorker => {
     completedWork: 0,
     taskId: null,
     department,
+    isWoman,
     id,
   };
 };

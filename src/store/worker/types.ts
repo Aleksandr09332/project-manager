@@ -10,6 +10,7 @@ export type TWorker = {
   name: string;
   completedWork: number;
   department: EDepartment;
+  isWoman: boolean;
   taskId: number|null;
 }
 

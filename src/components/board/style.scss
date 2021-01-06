@@ -2,6 +2,7 @@
   background: #fff;
   flex: 1 1 auto;
   position: relative;
+  display: flex;
 
   .board-controllers {
     position: absolute;
@@ -68,6 +69,7 @@
   &__workers {
     padding-top: 10px;
     padding-bottom: 10px;
+    height: 65px;
   }
 }
 
@@ -97,11 +99,5 @@
 }
 
 .worker {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid #000;
   margin-left: 10px;
-  display: inline-block;
-  cursor: pointer;
 }
