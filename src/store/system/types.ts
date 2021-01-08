@@ -1,4 +1,4 @@
-import { TCreateNewGame } from '../global/types';
+import { ModeGame, TCreateNewGame } from '../global/types';
 import RU from '../../lang/ru.json';
 
 export const TOGGLE_LANG = 'TOGGLE_LANG';
@@ -19,6 +19,7 @@ export interface ISystemState {
   step: StepEnums;
   day: number;
   dataLang: typeof RU;
+  mode: ModeGame;
 }
 
 export enum LangEnums {

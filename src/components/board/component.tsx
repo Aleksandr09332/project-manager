@@ -8,11 +8,11 @@ import './style.scss';
 import {
   BoardActionTypes, IBoardState, IColumn,
 } from '../../store/board/types';
-import { ITask, ITasksState } from '../../store/tasks/types';
+import { TTask, TTasksState } from '../../store/tasks/types';
 import { StepEnums } from '../../store/system/types';
-import { EBoardColumnsSystem, BoardNameTypes } from '../../store/global/types';
+import { BoardColumnsSystemEnum, BoardNameTypes } from '../../store/global/types';
 import { TWorker, TWorkerState } from '../../store/worker/types';
-import Task from '../task';
+import { Task } from '../task/component';
 
 type TUpdateMaxCountTasks = (name: BoardNameTypes, count: number) => BoardActionTypes;
 
@@ -25,14 +25,14 @@ type TUpdateLimit = {
 
 export type BoardPropsType = {
   step: StepEnums;
-  tasks: ITasksState;
+  tasks: TTasksState;
   columns: IBoardState;
   workers: TWorkerState;
   onUpdateMaxCountTasks: TUpdateMaxCountTasks;
 }
 
-function getTasks(tasks: Array<ITask>, boardColumn: BoardNameTypes) {
-  return tasks.map((task: ITask) => {
+function getTasks(tasks: TTasksState, boardColumn: BoardNameTypes) {
+  return tasks.map((task: TTask) => {
     const { column } = task;
 
     if (boardColumn === column) {
@@ -116,7 +116,7 @@ export function CBoard({
       )}
       <div className="board-columns">
         {columns.map(({ name, maxCountTask, isDone }: IColumn, index: number) => {
-          if (name === EBoardColumnsSystem.Closed) {
+          if (name === BoardColumnsSystemEnum.Closed) {
             return null;
           }
 

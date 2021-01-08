@@ -1,20 +1,16 @@
 import {
-  TOGGLE_LANG,
-  TOGGLE_STEP,
-  LangEnums,
-  LangActionTypes,
-  ISystemState,
-  StepEnums,
+  ISystemState, LangActionTypes, LangEnums, StepEnums, TOGGLE_LANG, TOGGLE_STEP,
 } from './types';
 import RU from '../../lang/ru.json';
-import { CREATE_NEW_GAME } from '../global/types';
+import { CREATE_NEW_GAME, ModeGame } from '../global/types';
 
-const initState = {
+const initState = (mode: ModeGame) => ({
   lang: LangEnums.Ru,
   step: StepEnums.Start,
   day: 1,
   dataLang: RU,
-};
+  mode,
+});
 
 const steps: Array<StepEnums> = [
   StepEnums.Start,
@@ -42,7 +38,9 @@ const toggleStep = (state: ISystemState):ISystemState => {
   };
 };
 
-export default function (state: ISystemState = initState, action: LangActionTypes):ISystemState {
+export default function (
+  state: ISystemState = initState(ModeGame.Normal), action: LangActionTypes
+):ISystemState {
   switch (action.type) {
     case TOGGLE_LANG:
       return {
@@ -51,7 +49,7 @@ export default function (state: ISystemState = initState, action: LangActionType
         dataLang: action.messages,
       };
     case CREATE_NEW_GAME:
-      return initState;
+      return initState(action.mode);
     case TOGGLE_STEP:
       return toggleStep(state);
     default:

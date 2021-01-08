@@ -10,16 +10,16 @@ export enum ModeGame {
   Hard = 'Hard',
 }
 
-export enum EBoardColumnsSystem {
+export enum BoardColumnsSystemEnum {
   Ready = 'Ready',
   Deployed = 'Deployed',
   Closed = 'Closed',
 }
 
-export enum EDepartment {
+export enum DepartmentEnum {
   Analysis = 'Analysis',
   Development = 'Development',
   Testing = 'Testing',
 }
 
-export type BoardNameTypes = EBoardColumnsSystem|EDepartment;
+export type BoardNameTypes = BoardColumnsSystemEnum|DepartmentEnum;

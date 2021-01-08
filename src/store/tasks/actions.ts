@@ -1,10 +1,10 @@
 import {
   ADD_TASK,
-  TaskLevelEnum,
   TasksActionTypes,
 } from './types';
+import { ModeGame } from '../global/types';
 
-export const addTask = (level: TaskLevelEnum):TasksActionTypes => ({
+export const addTask = (mode: ModeGame):TasksActionTypes => ({
   type: ADD_TASK,
-  level,
+  mode,
 });

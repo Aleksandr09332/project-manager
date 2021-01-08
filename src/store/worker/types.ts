@@ -1,4 +1,4 @@
-import { EDepartment, TCreateNewGame } from '../global/types';
+import { DepartmentEnum, TCreateNewGame } from '../global/types';
 
 export const ADD_WORKER = 'ADD_WORKER';
 export const REMOVE_WORKER = 'REMOVE_WORKER';
@@ -9,14 +9,14 @@ export type TWorker = {
   id: number;
   name: string;
   completedWork: number;
-  department: EDepartment;
+  department: DepartmentEnum;
   isWoman: boolean;
   taskId: number|null;
 }
 
 export type TAddWorker = {
   type: typeof ADD_WORKER;
-  department: EDepartment;
+  department: DepartmentEnum;
 }
 
 export type TRemoveWorker = {

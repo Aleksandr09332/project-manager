@@ -14,13 +14,13 @@ import {
   manSecondName,
 } from '../../conf/workerName';
 import {
-  CREATE_NEW_GAME, EDepartment, ModeGame,
+  CREATE_NEW_GAME, DepartmentEnum, ModeGame,
 } from '../global/types';
 
 const initState: TWorkerState = [];
 const getRandom = (n: number) => Math.floor(Math.random() * n);
 
-const generateWorker = (id: number, department: EDepartment):TWorker => {
+const generateWorker = (id: number, department: DepartmentEnum):TWorker => {
   let firstName: string;
   let secondName: string;
   const isWoman = getRandom(2) === 0;
@@ -52,13 +52,13 @@ export default function (state: TWorkerState = initState, action: WorkerActionTy
     case CREATE_NEW_GAME:
       if (action.mode === ModeGame.Normal) {
         return [
-          generateWorker(0, EDepartment.Analysis),
-          generateWorker(1, EDepartment.Analysis),
-          generateWorker(2, EDepartment.Development),
-          generateWorker(3, EDepartment.Development),
-          generateWorker(4, EDepartment.Development),
-          generateWorker(5, EDepartment.Testing),
-          generateWorker(6, EDepartment.Testing),
+          generateWorker(0, DepartmentEnum.Analysis),
+          generateWorker(1, DepartmentEnum.Analysis),
+          generateWorker(2, DepartmentEnum.Development),
+          generateWorker(3, DepartmentEnum.Development),
+          generateWorker(4, DepartmentEnum.Development),
+          generateWorker(5, DepartmentEnum.Testing),
+          generateWorker(6, DepartmentEnum.Testing),
         ];
       }
       return [];

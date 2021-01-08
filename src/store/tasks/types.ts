@@ -1,27 +1,36 @@
-import { TCreateNewGame, BoardNameTypes } from '../global/types';
+import {
+  TCreateNewGame, BoardNameTypes, DepartmentEnum, ModeGame,
+} from '../global/types';
 
 export const ADD_TASK = 'ADD_TASK';
 
-export type ITasksState = Array<ITask>;
+export type TTaskLevel = 'low'|'middle'|'high';
+export const ArrayTaskLevel: Array<TTaskLevel> = ['low', 'middle', 'high'];
 
-export interface ITask {
+type TProgressProp = {
+  name: DepartmentEnum,
+  current: number;
+  total: number;
+  workers: Array<number>;
+}
+
+export type TProgress = Array<TProgressProp>;
+
+export type TTask = {
   id: number;
   name: string;
-  column: BoardNameTypes|null;
+  column?: BoardNameTypes;
   dayStart: number;
   dayFinish: number;
-  level: TaskLevelEnum;
+  level: TTaskLevel;
+  progress: TProgress;
 }
 
-export enum TaskLevelEnum {
-  Low = 'low',
-  Middle = 'middle',
-  High = 'high',
-}
+export type TTasksState = Array<TTask>;
 
-interface IAddTask {
+type TAddTask = {
   type: typeof ADD_TASK;
-  level: TaskLevelEnum;
+  mode: ModeGame;
 }
 
-export type TasksActionTypes = IAddTask|TCreateNewGame;
+export type TasksActionTypes = TAddTask|TCreateNewGame;

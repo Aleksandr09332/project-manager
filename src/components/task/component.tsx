@@ -1,8 +1,9 @@
 import React from 'react';
 import { Panel } from 'rsuite';
-import { ITask } from '../store/tasks/types';
+import { TTask } from '../../store/tasks/types';
+import { Progress } from '../progress/component';
 
-export default function Task(props: ITask) {
+export const Task = (props: TTask) => {
   const {
     id,
     dayFinish,
@@ -10,6 +11,7 @@ export default function Task(props: ITask) {
     level,
     column,
     name,
+    progress,
   } = props;
 
   return (
@@ -19,6 +21,7 @@ export default function Task(props: ITask) {
       <p>{`dayStart: ${dayStart}`}</p>
       <p>{`level: ${level}`}</p>
       <p>{`column: ${column}`}</p>
+      <Progress data={progress} />
     </Panel>
   );
-}
+};

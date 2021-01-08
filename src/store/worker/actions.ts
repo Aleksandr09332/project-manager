@@ -5,9 +5,9 @@ import {
   UPDATE_COMPLETED_WORK,
   WorkerActionTypes,
 } from './types';
-import { EDepartment } from '../global/types';
+import { DepartmentEnum } from '../global/types';
 
-export const addWorker = (department: EDepartment):WorkerActionTypes => ({
+export const addWorker = (department: DepartmentEnum):WorkerActionTypes => ({
   type: ADD_WORKER,
   department,
 });

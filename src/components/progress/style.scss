@@ -1,0 +1,28 @@
+.progress {
+  &__item {
+    display: flex;
+  }
+
+  &__name {
+    width: 100px;
+    flex: 0 0 100px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.progress-done {
+  margin: 1px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background: #000;
+
+  &--not {
+    background: transparent;
+  }
+}

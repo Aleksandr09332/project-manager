@@ -8,6 +8,7 @@ import { propsType, CMain } from './component';
 const MainContainer = function createMainContainer(props: any) {
   const {
     day,
+    mode,
     step,
     onAddTask,
     onToggleStep,
@@ -17,6 +18,7 @@ const MainContainer = function createMainContainer(props: any) {
     <CMain
       step={step}
       day={day}
+      mode={mode}
       onAddTask={onAddTask}
       onToggleStep={onToggleStep}
     />
@@ -27,6 +29,7 @@ const mapStateToProps = (state: TState) => ({
   langCode: state.system.lang,
   step: state.system.step,
   day: state.system.day,
+  mode: state.system.mode,
 });
 
 const mapDispatchToProps = {

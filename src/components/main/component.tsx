@@ -1,15 +1,14 @@
 import React from 'react';
 import { LangActionTypes, StepEnums } from '../../store/system/types';
-import {
-  TaskLevelEnum,
-  TasksActionTypes,
-} from '../../store/tasks/types';
+import { TasksActionTypes } from '../../store/tasks/types';
+import { ModeGame } from '../../store/global/types';
 import Board from '../board/container';
 
 export interface propsType {
   day: number;
   step: StepEnums;
-  onAddTask: (level: TaskLevelEnum) => TasksActionTypes;
+  mode: ModeGame;
+  onAddTask: (mode: ModeGame) => TasksActionTypes;
   onToggleStep: () => LangActionTypes;
 }
 
@@ -17,6 +16,7 @@ export function CMain(props: propsType) {
   const {
     day,
     step,
+    mode,
     onAddTask,
     onToggleStep,
   } = props;
@@ -30,7 +30,7 @@ export function CMain(props: propsType) {
       </div>
       <Board />
       <div>
-        <button type="button" onClick={() => onAddTask(TaskLevelEnum.Low)}>Создать таск</button>
+        <button type="button" onClick={() => onAddTask(mode)}>Создать таск</button>
       </div>
     </div>
   );
