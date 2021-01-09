@@ -1,6 +1,6 @@
 import React from 'react';
 import { LangActionTypes, StepEnums } from '../../store/system/types';
-import { TasksActionTypes } from '../../store/tasks/types';
+import { TAddTaskFunc } from '../../store/tasks/types';
 import { ModeGame } from '../../store/global/types';
 import Board from '../board/container';
 
@@ -8,7 +8,7 @@ export interface propsType {
   day: number;
   step: StepEnums;
   mode: ModeGame;
-  onAddTask: (mode: ModeGame) => TasksActionTypes;
+  onAddTask: TAddTaskFunc;
   onToggleStep: () => LangActionTypes;
 }
 

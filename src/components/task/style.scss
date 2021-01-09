@@ -4,9 +4,19 @@
   border-radius: 5px;
 
   &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
     padding: 15px 10px;
     font-size: 18px;
     font-weight: bold;
+  }
+
+  &__next {
+    padding-right: 10px;
   }
 }
 

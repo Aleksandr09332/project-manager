@@ -1,10 +1,17 @@
 import {
   ADD_TASK,
-  TasksActionTypes,
+  MOVE_TASK,
+  TAddTaskFunc,
+  TMoveTaskFunc,
 } from './types';
-import { ModeGame } from '../global/types';
 
-export const addTask = (mode: ModeGame):TasksActionTypes => ({
+export const addTask: TAddTaskFunc = (mode) => ({
   type: ADD_TASK,
   mode,
+});
+
+export const moveTask: TMoveTaskFunc = (column, id) => ({
+  type: MOVE_TASK,
+  column,
+  id,
 });

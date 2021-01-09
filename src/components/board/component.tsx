@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
+import { useSize } from '@umijs/hooks';
 import {
   InputNumber, InputGroup, ButtonGroup, IconButton, Icon, Whisper, Tooltip, Avatar,
 } from 'rsuite';
-import { useSize } from '@umijs/hooks';
-import './style.scss';
-
 import {
   BoardActionTypes, IBoardState, IColumn,
 } from '../../store/board/types';
-import { TTask, TTasksState } from '../../store/tasks/types';
-import { StepEnums } from '../../store/system/types';
+import { TMoveTaskFunc, TTask, TTasksState } from '../../store/tasks/types';
 import { BoardColumnsSystemEnum, BoardNameTypes } from '../../store/global/types';
 import { TWorker, TWorkerState } from '../../store/worker/types';
+import { StepEnums } from '../../store/system/types';
 import { Task } from '../task/component';
+import './style.scss';
 
 type TUpdateMaxCountTasks = (name: BoardNameTypes, count: number) => BoardActionTypes;
+
+type TGroupTask = {
+  [key: string]: TTasksState;
+}
 
 type TUpdateLimit = {
   maxCountTask: number;
@@ -28,19 +31,41 @@ export type BoardPropsType = {
   tasks: TTasksState;
   columns: IBoardState;
   workers: TWorkerState;
+  onMoveTask: TMoveTaskFunc;
   onUpdateMaxCountTasks: TUpdateMaxCountTasks;
 }
 
-function getTasks(tasks: TTasksState, boardColumn: BoardNameTypes) {
-  return tasks.map((task: TTask) => {
-    const { column } = task;
+function getTasks(
+  tasks: TGroupTask,
+  currentColumnName: BoardNameTypes,
+  onMoveTask: TMoveTaskFunc,
+  nextColumn: IColumn,
+) {
+  return tasks[currentColumnName].map((task: TTask) => {
+    const { name, maxCountTask } = nextColumn;
+    const freePlace = tasks[name].length < maxCountTask;
+    const moveTask = () => onMoveTask(name, task.id);
 
-    if (boardColumn === column) {
-      return Task(task);
-    }
-
-    return null;
+    return Task({ ...task, freePlace, moveTask });
   });
+}
+
+function getGroupTask(tasks: TTasksState, columns: IBoardState):TGroupTask {
+  const result:TGroupTask = {};
+
+  for (let i = 0; i < columns.length; i++) {
+    result[columns[i].name] = [];
+  }
+
+  for (let i = 0; i < tasks.length; i++) {
+    const { column } = tasks[i];
+
+    if (column && result[column]) {
+      result[column].push(tasks[i]);
+    }
+  }
+
+  return result;
 }
 
 function minusHandler({
@@ -68,7 +93,7 @@ const iconMan = './dist/image/man.png';
 const iconWoman = './dist/image/woman.png';
 
 export function CBoard({
-  step, tasks, columns, onUpdateMaxCountTasks, workers,
+  step, tasks, columns, onUpdateMaxCountTasks, workers, onMoveTask,
 }: BoardPropsType) {
   const widthColumn = 200;
   const [box, ref] = useSize<HTMLDivElement>();
@@ -95,6 +120,8 @@ export function CBoard({
   const scrollHorizontal = (stepScroll: number) => {
     setPosition(position + stepScroll);
   };
+
+  const groupTask = getGroupTask(tasks, columns);
 
   return (
     <div className="board" ref={ref}>
@@ -206,10 +233,16 @@ export function CBoard({
               </div>
               {isDone ? (
                 <div className="board-status">
-                  <div className="board-status__item">{getTasks(tasks, name)}</div>
+                  <div className="board-status__item">
+                    {getTasks(groupTask, name, onMoveTask, columns[index + 1])}
+                  </div>
                   <div className="board-status__item">test</div>
                 </div>
-              ) : <div className="board-row board-row--padding">{getTasks(tasks, name)}</div>}
+              ) : (
+                <div className="board-row board-row--padding">
+                  {getTasks(groupTask, name, onMoveTask, columns[index + 1])}
+                </div>
+              )}
             </div>
           );
         })}

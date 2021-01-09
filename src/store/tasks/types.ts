@@ -3,6 +3,7 @@ import {
 } from '../global/types';
 
 export const ADD_TASK = 'ADD_TASK';
+export const MOVE_TASK = 'MOVE_TASK';
 
 export type TTaskLevel = 'low'|'middle'|'high';
 export const ArrayTaskLevel: Array<TTaskLevel> = ['low', 'middle', 'high'];
@@ -33,4 +34,12 @@ type TAddTask = {
   mode: ModeGame;
 }
 
-export type TasksActionTypes = TAddTask|TCreateNewGame;
+type TMoveTask = {
+  type: typeof MOVE_TASK;
+  column: BoardNameTypes;
+  id: number;
+}
+
+export type TasksActionTypes = TCreateNewGame|TAddTask|TMoveTask;
+export type TAddTaskFunc = (mode: ModeGame) => TasksActionTypes;
+export type TMoveTaskFunc = (column: BoardNameTypes, id: number) => TasksActionTypes;

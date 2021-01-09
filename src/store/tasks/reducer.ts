@@ -1,5 +1,6 @@
 import {
   ADD_TASK,
+  MOVE_TASK,
   TTask,
   TTasksState,
   TTaskLevel,
@@ -64,6 +65,16 @@ export default function (state: TTasksState = initState, action: TasksActionType
         ...state,
         generationTask(state.length, action.mode),
       ];
+    case MOVE_TASK:
+      return state.map((item) => {
+        if (item.id !== action.id) {
+          return item;
+        }
+        return {
+          ...item,
+          column: action.column,
+        };
+      });
     case CREATE_NEW_GAME:
       return initState;
     default:
