@@ -1,0 +1,21 @@
+.task {
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+  border-radius: 5px;
+
+  &__header {
+    padding: 15px 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.task-timing {
+  display: flex;
+
+  &__item {
+    flex: 1 1 auto;
+    padding: 10px;
+    text-align: center;
+  }
+}

@@ -48,7 +48,7 @@ const generationTask = (id: number, mode: ModeGame):TTask => {
     id,
     level,
     column: BoardColumnsSystemEnum.Ready,
-    name: `#${level}${id + 1}`,
+    name: `${level} #${id + 1}`,
     dayStart: 0,
     dayFinish: 0,
     progress,
