@@ -26,4 +26,12 @@ const Application = (
     <App />
   </Provider>
 );
+
+if (process.env.NODE_ENV === 'development') {
+  const link = document.getElementById('style');
+
+  if (link) {
+    document.head.removeChild(link);
+  }
+}
 ReactDOM.render(Application, document.getElementById('root'));
